@@ -1,0 +1,38 @@
+﻿@model IEnumerable<IOT_Tree_MVC5.Models.TableItem>
+@{
+    ViewBag.Title = "Danh sách Table";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách Table của @ViewBag.DatabaseName</h2>
+<div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+        <form class="form-inline" method="post" action="">
+            @Html.AntiForgeryToken()
+            <input value="@ViewBag.DatabaseName" name="database" id="database" type="hidden" />
+            <input class="form-control" value="" type="text" placeholder="Nhập tên table cần tạo" name="table" id="table" style="width: 300px;" />
+            <button style="margin-left: 5px;" type="submit" class="btn btn-info btn-sm">Tạo</button>
+        </form>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-6">
+        <label>@ViewBag.Messenger</label>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-sm-4 col-md-4 col-lg-4" style="font-size: 20px;">Tên Table</div>
+    <div class="col-sm-8 col-md-8 col-lg-8"></div>
+</div>
+<hr />
+
+@foreach (var item in Model)
+{
+    <div class="row" style="margin-bottom: 5px;">
+        <div class="col-sm-3 col-md-3 col-lg-3">@item.TableName</div>
+        <div class="col-sm-3 col-md-3 col-lg-3">
+            <a href="/Tree/ImportData?database=@ViewBag.DatabaseName&table=@item.TableName" class="btn btn-sm btn-info">Import Data</a> |
+            <a href="/Tree/GetData?database=@ViewBag.DatabaseName&table=@item.TableName" class="btn btn-sm btn-info">GET</a>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6"></div>
+    </div>
+}

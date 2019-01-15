@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Get Data";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSZBENkBbSuCWRF5IdUE6q2YogGpqXg3c&callback=initMap"></script>
+<h2>GET danh sách: <a href="/TableManager?database=@ViewBag.Database">@ViewBag.Database</a> > @ViewBag.Table</h2>
+<div class="row">
+    <div class="col-sm-4 col-md-4 col-lg-4 ">
+        <input type="hidden" id="databaseName" name="databaseName" value="@ViewBag.Database" class="form-control">
+        <input type="hidden" id="tableName" name="tableName" value="@ViewBag.Table" class="form-control">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-prepend"><span class="input-group-text">Latitude</span></span>
+                <input type="text" id="lat" name="lat" value="16.0801741598325" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4 ">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-prepend"><span class="input-group-text">Longitude</span></span>
+                <input type="text" id="lng" name="lng" value="108.219016143271" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4 ">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-prepend"><span class="input-group-text">Bán kính (km)</span></span>
+                <input type="text" id="banKinh" name="banKinh" value="" class="form-control">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6 ">
+        <input type="button" value="GET Hình Vuông" class="btn btn-info btn-sm" onclick="return getHinhVuong()" /> |
+        <input type="button" value="GET Hình Tròn" class="btn btn-info btn-sm" onclick="return getHinhTron()" />
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-6 ">
+        <div id="msg" style="color:red;"></div>
+    </div>
+</div>
+<hr />
+<h4>Danh sách tìm được</h4>
+<div class="row">
+    <div class="col-sm-8 col-md-8 col-lg-8">
+        <div id="map" style="height: 500px;"></div>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="font-size: 20px;">Tên Cây</th>
+                            <th style="font-size: 20px;">LATITUDE</th>
+                            <th style="font-size: 20px;">LONGITUDE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table_body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <a href="/Tree/Table?database=@ViewBag.Database" class="btn btn-info">Quay lại</a>
+    </div>
+</div>

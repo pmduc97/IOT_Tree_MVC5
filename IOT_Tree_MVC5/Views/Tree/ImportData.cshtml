@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Import Data";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h2>Import Data to: <a href="/TableManager?database=@ViewBag.Database">@ViewBag.Database</a> > @ViewBag.Table</h2>
+<hr />
+<div class="row">
+    <form action="" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <input id="databaseName" name="database" type="hidden" value="@ViewBag.Database" />
+            <input id="tableName" name="table" type="hidden" value="@ViewBag.Table" />
+            <input id="link" name="link" class="form-control" type="file" style="width: 500px;" />
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <input class="btn btn-sm btn-info" value="Import" type="submit" />
+        </div>
+    </form>
+</div>
+@if (ViewBag.Row != null && ViewBag.Time != null)
+{
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <label>Số dòng : @ViewBag.Row</label>
+            <br />
+            <label>Thời gian: @ViewBag.Time</label>
+        </div>
+    </div>
+}
+@if (ViewBag.Messenger != null)
+{
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <label>@ViewBag.Messenger</label>
+        </div>
+    </div>
+}
+<hr />
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <a href="/Tree/Table?database=@ViewBag.Database" class="btn btn-info">Quay lại</a>
+    </div>
+</div>
+
+

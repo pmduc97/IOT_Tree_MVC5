@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @Styles.Render("~/AdminCP/Css")
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="~/Scripts/MyJs.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================================== -->
+    <!-- login page  -->
+    <!-- ============================================================== -->
+    <div class="splash-container">
+        <div class="card ">
+            <div class="card-header text-center">
+                <a href="../index.html"><img class="logo-img" src="~/Images/logo/logoIOT.png" alt="logo"></a>
+                <span class="splash-description">
+                    @if (ViewBag.Messengerr != null)
+                    {
+                        <label>@ViewBag.Messengerr</label>
+                    }
+                    else
+                    {
+                        <label>Đăng nhập để vào trang quản trị</label>
+                    }
+                </span>
+            </div>
+            <div class="card-body">
+                <form method="post" action="">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group" style="margin-bottom: 3px;">
+                        <label>Server</label>
+                        <input class="form-control form-control" name="server" id="server" type="text" placeholder="Server" value="DUCPHAM\SQLEXPRESS">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 3px;">
+                        <label>Port</label>
+                        <input class="form-control form-control" name="port" id="port" type="text" placeholder="Port" value="1433">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 3px;">
+                        <label>Tài khoản</label>
+                        <input class="form-control form-control" name="username" id="username" type="text" placeholder="UserID" value="sa">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 3px;">
+                        <label>Mật khẩu</label>
+                        <input class="form-control form-control" name="password" id="password" type="password" placeholder="Password" value="123">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Đăng Nhập</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/AdminCP/Js")
+</body>
+</html>

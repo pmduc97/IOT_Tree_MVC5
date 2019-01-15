@@ -1,0 +1,36 @@
+﻿@model IEnumerable<IOT_Tree_MVC5.Models.DatabaseItem>
+@{
+    ViewBag.Title = "IOT Cây xanh";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách Database</h2>
+<div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+        <form class="form-inline" method="post" action="">
+            @Html.AntiForgeryToken()
+            <input class="form-control" value="" type="text" placeholder="Nhập tên database cần tạo" name="databaseName" id="databaseName" style="width: 300px;" />
+            <button style="margin-left: 5px;" type="submit" class="btn btn-info btn-sm">Tạo</button>
+        </form>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-6">
+        <label>@ViewBag.Messenger</label>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-sm-4 col-md-4 col-lg-4" style="font-size: 20px;">Tên Database</div>
+    <div class="col-sm-8 col-md-8 col-lg-8"></div>
+</div>
+<hr />
+
+    @foreach (var item in Model)
+    {
+        <div class="row" style="margin-bottom: 5px;">
+            <div class="col-sm-3 col-md-3 col-lg-3">@item.DatabaseName</div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <a href="/Tree/Table?database=@item.DatabaseName" class="btn btn-sm btn-info">Xem Table</a>
+            </div>
+            <div class="col-sm-7 col-md-7 col-lg-7"></div>
+        </div>
+    }
